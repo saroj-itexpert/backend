@@ -4,40 +4,37 @@ const books = db.books;
 
 exports.fetchBooks = async (req, res) => {
     try {
-       //logic to fetch books from database
-    const datas = await books.findAll();
-    res.json({
-        "message": "Book fetched successfully!",
-        "data": datas
-    }); 
+        //logic to fetch books from database
+        const datas = await books.findAll();
+        res.json({
+            "message": "Book fetched successfully!",
+            "data": datas
+        });
     } catch (error) {
-       console.log(error);
-        
+        console.log(error);
     }
-    
-
 };
 
 exports.addBook = async (req, res) => {
     try {
         //logic to save books in database
-    //console.log(req.body.bookName);
-    const { bookKoName, bookPrice, bookAuthor } = req.body
-    console.log(bookKoName);
-    console.log(bookPrice);
-    console.log(bookAuthor);
+        //console.log(req.body.bookName);
+        const { bookKoName, bookPrice, bookAuthor } = req.body
+        console.log(bookKoName);
+        console.log(bookPrice);
+        console.log(bookAuthor);
 
-    await books.create({
-        bookKoName,
-        bookPrice,
-        bookAuthor,
-    })
-    res.json({ "message": "Book saved successfully!" });
+        await books.create({
+            bookKoName,
+            bookPrice,
+            bookAuthor,
+        })
+        res.json({ "message": "Book saved successfully!" });
     } catch (error) {
         console.log(error);
-        
+
     }
-    
+
 
 }
 
@@ -52,14 +49,14 @@ exports.deleteBook = async (req, res) => {
                 id,
             }
         })  // delete from books where id = id;
-    
+
         res.json({ "message": `Book deleted successfully!` });
     } catch (error) {
         console.log(error);
-        
+
     }
 
-   
+
 }
 
 exports.editBook = function (req, res) {
@@ -67,18 +64,18 @@ exports.editBook = function (req, res) {
     try {
         const id = req.params.id;
         const { bookKoName, bookPrice, bookAuthor } = req.body
-    
+
         books.update({ bookKoName, bookPrice, bookAuthor }, {
             where: {
                 id: id
             }
         })
-        res.json({ "message": "Edited successfully!" })  
+        res.json({ "message": "Edited successfully!" })
     } catch (error) {
         console.log(error);
-        
+
     }
-   
+
 }
 
 exports.singleFetchBook = async function (req, res) {
@@ -94,13 +91,13 @@ exports.singleFetchBook = async function (req, res) {
         res.json({
             message: "Single book is fetched successfully",
             datas: datas
-        }) 
+        })
     } catch (error) {
         console.log(error);
-        
+
     }
 
-    
+
 }
 
 // module.exports = {fetchBooks, addBook, deleteBook, editBook};  you can export methods like this too.
