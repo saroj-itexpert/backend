@@ -3,72 +3,104 @@ const db = require("../database/connection"); // adjust path as per your project
 const books = db.books;
 
 exports.fetchBooks = async (req, res) => {
-    //logic to fetch books from database
+    try {
+       //logic to fetch books from database
     const datas = await books.findAll();
     res.json({
         "message": "Book fetched successfully!",
         "data": datas
-    });
+    }); 
+    } catch (error) {
+       console.log(error);
+        
+    }
+    
 
 };
 
 exports.addBook = async (req, res) => {
-    //logic to save books in database
+    try {
+        //logic to save books in database
     //console.log(req.body.bookName);
-    const { bookName, bookPrice, bookAuthor } = req.body
-    console.log(bookName);
+    const { bookKoName, bookPrice, bookAuthor } = req.body
+    console.log(bookKoName);
     console.log(bookPrice);
     console.log(bookAuthor);
 
     await books.create({
-        bookKoName: bookName,
+        bookKoName,
         bookPrice,
         bookAuthor,
     })
     res.json({ "message": "Book saved successfully!" });
+    } catch (error) {
+        console.log(error);
+        
+    }
+    
 
 }
 
 exports.deleteBook = async (req, res) => {
     //logic to delete books from database
-    const id = req.params.id        // const {id} = req.params (yesari pani destructure bata garna milcha)
+    try {
+        const id = req.params.id        // const {id} = req.params (yesari pani destructure bata garna milcha)
 
-    //id paaisakepachi, tyo id ko bok chai books table bata udaidine
-    await books.destroy({
-        where: {
-            id,
-        }
-    })  // delete from books where id = id;
+        //id paaisakepachi, tyo id ko bok chai books table bata udaidine
+        await books.destroy({
+            where: {
+                id,
+            }
+        })  // delete from books where id = id;
+    
+        res.json({ "message": `Book deleted successfully!` });
+    } catch (error) {
+        console.log(error);
+        
+    }
 
-    res.json({ "message": `Book deleted successfully!` });
+   
 }
 
 exports.editBook = function (req, res) {
     //kun id ko edit garne tesko id linu paryo 
-    const id = req.params.id;
-    const { bookName, bookPrice, bookAuthor } = req.body
-
-    books.update({ bookName: bookName, price: bookPrice, bookAuthor: bookAuthor }, {
-        where: {
-            id: id
-        }
-    })
-    res.json({ "message": "Edit" })
+    try {
+        const id = req.params.id;
+        const { bookKoName, bookPrice, bookAuthor } = req.body
+    
+        books.update({ bookKoName, bookPrice, bookAuthor }, {
+            where: {
+                id: id
+            }
+        })
+        res.json({ "message": "Edited successfully!" })  
+    } catch (error) {
+        console.log(error);
+        
+    }
+   
 }
 
 exports.singleFetchBook = async function (req, res) {
     //first capture what id is he sending
-    const id = req.params.id;
-    const datas = await books.findByPk(id);   //always returns object
-    // books.findAll({  it returns values in Array
-    //     where: {
-    //         id: id
-    //     }
-    // })
-    res.json({
-        message: "Single book is fetched successfully",
-        datas: datas
-    })
+    try {
+        const id = req.params.id;
+        const datas = await books.findByPk(id);   //always returns object
+        // books.findAll({  it returns values in Array
+        //     where: {
+        //         id: id
+        //     }
+        // })
+        res.json({
+            message: "Single book is fetched successfully",
+            datas: datas
+        }) 
+    } catch (error) {
+        console.log(error);
+        
+    }
+
+    
 }
 
 // module.exports = {fetchBooks, addBook, deleteBook, editBook};  you can export methods like this too.
