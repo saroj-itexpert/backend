@@ -1,7 +1,12 @@
 // hami yaha database connection ko code/logic lekhxam
 const {Sequelize, DataTypes} = require("sequelize")
 
-const sequelize = new Sequelize("postgresql://postgres.andhicxkpvuuhlabgbsw:mynameismaharjan@aws-0-ap-south-1.pooler.supabase.com:6543/postgres");
+const sequelize = new Sequelize("postgresql://postgres.andhicxkpvuuhlabgbsw:mynameismaharjan@aws-0-ap-south-1.pooler.supabase.com:6543/postgres",
+                                {
+                                    define:{
+                                        freezeTableName: true,
+                                    },
+                                });
 
 sequelize.authenticate()
 .then(()=>{
