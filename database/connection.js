@@ -14,6 +14,7 @@ sequelize.authenticate()
 const db = {}
 db.Sequelize = Sequelize
 db.books = require("./models/book.model")(sequelize, DataTypes)
+db.users = require("./models/user.model")(sequelize,DataTypes)
 
 //migrate code ho yo chai hai 
 sequelize.sync({force:false, alter: true}).then(

@@ -1,6 +1,6 @@
 const { where } = require("sequelize");
 const db = require("../database/connection"); // adjust path as per your project structure
-const books = db.books;
+const books = db. books;
 
 exports.fetchBooks = async (req, res) => {
     try {
@@ -34,8 +34,6 @@ exports.addBook = async (req, res) => {
         console.log(error);
 
     }
-
-
 }
 
 exports.deleteBook = async (req, res) => {
@@ -55,7 +53,6 @@ exports.deleteBook = async (req, res) => {
         console.log(error);
 
     }
-
 
 }
 
