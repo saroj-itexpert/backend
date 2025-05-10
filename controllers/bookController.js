@@ -25,7 +25,7 @@ exports.addBook = async (req, res) => {
         console.log(bookAuthor);
 
         await books.create({
-            bookKoName,
+            bookName,
             bookPrice,
             bookAuthor,
         })
