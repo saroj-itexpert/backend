@@ -1,3 +1,5 @@
+const { fetchUser, postUser } = require('../controllers/userController');
+
 const router = require('express').Router();
 
-router.get("/users")
+router.route("/users").get(fetchUser).post(postUser);
