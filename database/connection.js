@@ -1,12 +1,12 @@
 // hami yaha database connection ko code/logic lekhxam
 const {Sequelize, DataTypes} = require("sequelize")
 
-const sequelize = new Sequelize("postgresql://postgres.andhicxkpvuuhlabgbsw:mynameismaharjan@aws-0-ap-south-1.pooler.supabase.com:6543/postgres",
-                                {
-                                    define:{
-                                        freezeTableName: true,
-                                    },
-                                });
+const sequelize = new Sequelize("postgresql://postgres.andhicxkpvuuhlabgbsw:mynameismaharjan@aws-0-ap-south-1.pooler.supabase.com:6543/postgres");
+                                // {
+                                //     define:{
+                                //         freezeTableName: true,
+                                //     },
+                                // }    this is used to stop making table name plural by default in supabase
 
 sequelize.authenticate()
 .then(()=>{

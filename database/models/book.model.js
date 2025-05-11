@@ -4,7 +4,7 @@ const bookModel= (sequelize, DataTypes)=> {
     //define bhanne bata create garne table
         //rule in database, J naam lekhnu huncha tesko plural huncha in supabase for eg. if you write product it becomes products
     const Book = sequelize.define("book",{
-        bookName:{
+        bookKoName:{
             type: DataTypes.STRING,
             allowNull: false
         },
