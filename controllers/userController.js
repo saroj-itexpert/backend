@@ -5,10 +5,10 @@ const user = db.users;
 exports.fetchUser = async (req, res)=>{
     try{
         const data = await user.findAll()
-        res.status(200).res.json({"message":"User fetched successfully!"});
+        res.status(200).json({"message":data});
 
     }catch(error){
-        res.status(500).res.json({"message":error.message});
+        res.status(500).json({"message":error.message});
     }   
     
 }
@@ -20,7 +20,7 @@ exports.postUser = async(req, res)=>{
             username,
             password
         });
-        res.status(200).json({"data": data})
+        res.status(200).json({"data": "User detail posted"})
     } catch (error) {
        res.status(500).json({"message": error.message});
     }

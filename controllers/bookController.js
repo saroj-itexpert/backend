@@ -1,6 +1,6 @@
 const { where } = require("sequelize");
 const db = require("../database/connection"); // adjust path as per your project structure
-const books = db. books;
+const books = db.books;
 
 exports.fetchBooks = async (req, res) => {
     try {
@@ -25,7 +25,7 @@ exports.addBook = async (req, res) => {
         console.log(bookAuthor);
 
         await books.create({
-            bookName,
+            bookKoName,
             bookPrice,
             bookAuthor,
         })
@@ -56,13 +56,13 @@ exports.deleteBook = async (req, res) => {
 
 }
 
-exports.editBook = function (req, res) {
+exports.editBook = async function (req, res) {
     //kun id ko edit garne tesko id linu paryo 
     try {
         const id = req.params.id;
         const { bookKoName, bookPrice, bookAuthor } = req.body
 
-        books.update({ bookKoName, bookPrice, bookAuthor }, {
+        await books.update({ bookKoName, bookPrice, bookAuthor }, {
             where: {
                 id: id
             }
