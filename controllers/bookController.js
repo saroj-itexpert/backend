@@ -8,7 +8,7 @@ exports.fetchBooks = async (req, res) => {
         const datas = await books.findAll();
         res.json({
             "message": "Book fetched successfully!",
-            "data": datas
+            "datas": datas
         });
     } catch (error) {
         console.log(error);
