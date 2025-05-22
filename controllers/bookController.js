@@ -19,15 +19,17 @@ exports.addBook = async (req, res) => {
   try {
     //logic to save books in database
     //console.log(req.body.bookName);
-    const { bookKoName, bookPrice, bookAuthor } = req.body;
+    const { bookKoName, bookPrice, bookAuthor, bookGenre } = req.body;
     console.log(bookKoName);
     console.log(bookPrice);
     console.log(bookAuthor);
+    console.log(bookGenre);
 
     await books.create({
       bookKoName,
       bookPrice,
       bookAuthor,
+      bookGenre,
     });
     res.json({ message: "Book saved successfully!" });
   } catch (error) {
@@ -57,10 +59,10 @@ exports.editBook = async function (req, res) {
   //kun id ko edit garne tesko id linu paryo
   try {
     const id = req.params.id;
-    const { bookKoName, bookPrice, bookAuthor } = req.body;
+    const { bookKoName, bookPrice, bookAuthor, bookGenre } = req.body;
 
     await books.update(
-      { bookKoName, bookPrice, bookAuthor },
+      { bookKoName, bookPrice, bookAuthor, bookGenre },
       {
         where: {
           id: id,
